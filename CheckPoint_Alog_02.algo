@@ -1,0 +1,42 @@
+ALGORITHM calculerSommeDansEnsemble //trouvez la somme de tous les éléments distincts de l'ensemble
+VAR
+    //Déclaration variables
+    tab_Ensemble_01 : ARRAY_OF INTEGER[4]; // Tableau ensemble 01
+    tab_Ensemble_02 : ARRAY_OF INTEGER[5]; // Tableau ensemble 02
+    mon_Elt : string; // var pour stocker l'affichage
+    elt_Trouve : BOOLEAN;
+    sum, cpt, taille_01, taille_02, taille_mon_Elt : INTEGER;
+BEGIN
+    set_instructions
+    //Initialisation des variables
+    sum := 0;
+    cpt := 0;
+    mon_Elt := " Eléments distincts ";
+    tab_Ensemble_01 := [3, 1, 7, 9];
+    tab_Ensemble_02 := [2, 4, 1, 9, 3];
+    taille_mon_Elt := 0;
+    taille_01 := tab_Ensemble_01.lenght();
+    taille_02 := tab_Ensemble_02.lenght();
+    elt_Trouve := false;
+    //Parcours du premier tableau
+    FOR i FROM 0 TO taille_01 -1 STEP 1  DO
+        //Parcours du deuxième tableau
+        FOR j FROM 0 TO taille_02 -1 STEP 1  DO
+            // Si un élément du tableau 01 est retrouvé dans le tableau 02 on met la variable elt_trouvée à true.
+            IF (tab_Ensemble_01[i] === tab_Ensemble_02[j]) THEN
+                elt_Trouve := true;
+            END_IF
+        END_FOR
+        // si élément trouvé est à false => pas de correspondance
+        IF (elt_Trouve == false) THEN
+            sum := sum + tab_Ensemble_01[i];
+            mon_Elt := mon_Elt + tab_Ensemble_01[i] + " , ";
+        END_IF
+    END_FOR
+    //Supprimer la dernière virgule du string mon_Elt  
+    //A revoir
+    taille_mon_Elt := mon_Elt.lenght() -1;
+    mon_Elt.lenght() := taille_mon_Elt;
+    //output 
+    write("Résultat :" + sum + "( " + mon_Elt +" )");
+END

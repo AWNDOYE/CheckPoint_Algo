@@ -1,0 +1,43 @@
+ALGORITHM LireUnePrase
+VAR
+    set_declarations
+    maPhrase : string //ou ARRAY_OF CHAR[n]; // Déclaration d'un tableau de chaînes pour stocker la phrase à lire
+    tab_Voyelle : ARRAY_OF CHAR[7]; // Déclaration d'un tableau de string pour stocker les voyelles
+    maTaille, cpt_Voyelle, cpt_NbMot : INTEGER;
+BEGIN
+
+    // ***********************Initialisation des variables*******************//
+    tab_Voyelle :=["a","o","i","u","e","y"];// initialisation tableau voyelle
+    write ("Saisir une phrase : "); //output aux users
+    cpt_Voyelle := 0;
+    read (maPhrase); // récupérer la phrase qu'on stocke la variabme tableau
+
+
+    maTaille := maPhrase.lenght(); //stocker la taille de ma phrase
+    //tester si la phrase finit par un point ou non
+    IF (maPhrase[maTaille - 1] <> ".") THEN
+        set_instructions
+        write(" Veuillez corriger la phrase et mettre un point à la fin.")
+    ELSE
+        set_instructions
+        // la phrase a un point et on parcout jusqu'à ce qu'on trouve le point
+        cpt_NbMot := 1;
+        FOR i FROM 0 TO maPhrase[maTaille - 1] STEP 1 DO
+            set_instructions
+            //tester si on a un espace et compter le nombre de mots
+            IF (maPhrase[i] === " ") THEN
+                set_instructions
+                cpt_NbMot = cpt_NbMot +1;
+            END_IF
+            FOR j FROM 0 TO tab_Voyelle.lenght -1 STEP 1  DO
+                set_instructions
+                // Tester si le charactère de maPhrase[i] est contenu dans le tableau de voyelles
+                IF (maPhrase[i] === tab_Voyelle[j]) THEN
+                    cpt_Voyelle := cpt_Voyelle + 1;
+                END_IF
+            END_FOR
+        END_FOR 
+        write(" La phrase : " +  maPhrase + " comporte " + cpt_NbMot + "mots et "+cpt_Voyelle + "voyelles.")
+    END_IF
+
+END
